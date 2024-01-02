@@ -2,11 +2,11 @@ const db = require('../../database/models'); //Se guardan todos los modelos exis
 
 const mainController = {
   listBooks: function(req, res) {
-    // Utilizamos Promise para manejar la asincronía
+    
     db.Book.findAll({
         include: [{ association: 'authors' }]
     }).then(function(books) {
-        // Respondes con un JSON que incluye el código de estado 200 y la lista de libros
+        // JSON que incluye el código de estado 200 y la lista de libros
         res.status(200).json({
             status: 'Exitoso',
             code: 200,
@@ -16,7 +16,7 @@ const mainController = {
             }
         });
     }).catch(function(error) {
-        // Si hay un error, respondes con un JSON que incluye el código de estado 500 y un mensaje de error
+        // JSON que incluye el código de estado 500 y un mensaje de error
         console.error(error);
         res.status(500).json({
             status: 'Error',
